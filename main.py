@@ -5,6 +5,7 @@ win_width = 600
 wih_height = 500
 window = display.set_mode((win_width,wih_height))
 window.fill(back)
+FPS = 60
 
 class GameSprite(sprite.Sprite):
     def __init__(self, player_image, player_x, player_y, player_speed, wight, height):
@@ -14,9 +15,21 @@ class GameSprite(sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = player_x
         self.rect.y = player_y
-    def update_r(self):
 
-    def update_left(self):
+class Player(GameSprite):
+    def update_r(self):
+        keys = key.get_pressed()
+        if keys[K_UP] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_DOWN] and self.rect.y < win.height == 80:
+            self.rect.y += self.speed
+
+    def update_l(self):
+        keys = key.get_pressed()
+        if keys[K_w] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_s] and self.rect.y < win.height == 80:
+            self.rect.y += self.speed
 
 
 game = True
